@@ -1,19 +1,21 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
 
-import { DashboardComponent }   from './dashboard.component';
-import { HeroesComponent }      from './heroes.component';
-import { HeroDetailComponent }  from './hero-detail.component';
+import {NgMainFormComponent} from "./ng-main-form/ng-main-form.component";
+import {PageNotFoundComponent} from "./not-found.component";
+import {TasklistComponent} from "./ng-tasklist/tasklist.component";
 
-const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard',  component: DashboardComponent },
-  { path: 'detail/:id', component: HeroDetailComponent },
-  { path: 'heroes',     component: HeroesComponent }
+const appRoutes: Routes = [
+  {path: '', redirectTo: '/tasklists', pathMatch: 'full'},
+  {path: 'tasklists', component: NgMainFormComponent},
+  {path: 'tasklist', component: TasklistComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(appRoutes,
+    {enableTracing: true})],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
